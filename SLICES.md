@@ -23,6 +23,45 @@ Public GitHub today = separate checked SLICES along that stack
 (not one connected theorem)
 ```
 
+## How the slices connect (design vs proof)
+
+The repos are **not unrelated modules**. They are **consecutive layers** of the
+same per-slot pipeline:
+
+```text
+                    INTENDED RUNTIME STACK
+                    ══════════════════════
+
+  proofs repo          merkle repo              (private, not public)
+  admission gate  ──►  AE: Freeze/Reconcile/Commit  ──►  loss / exactly-once …
+  (default model)      (baseline, ideal net)
+
+       │                        │
+       │   shared vocabulary:   │
+       │   cslot, Nodes,        │
+       │   processed[n],        │
+       │   network records      │
+       └───────────┬────────────┘
+                   │
+         same slot timeline (assumption A1)
+```
+
+| Link | Connected in **design**? | Connected in **formal proof** on GitHub? |
+|------|--------------------------|------------------------------------------|
+| Admission → agreement | Yes — AE runs on locally admitted ids (`processed`) | **No** — no published refinement/composition theorem imports one `Spec` into the next |
+| proofs repo ↔ spec repo | Same layer (admission), **two variants** | **No** — different admission rules; not two steps of one pipeline |
+| Agreement → loss recovery | Yes — intended next layer | **No** — `AE_Lossy` not public; no composed proof |
+| Any slice → production C | Empirical target (private) | **No** — code↔spec refinement not claimed |
+
+**Short version:** the slices **stack in the story** (admission then agreement
+then recovery), but each repo proves/checks **its layer in isolation**. What is
+missing publicly is a **single composed TLA+ module** (or refinement chain) that
+wires `Spec_admission` → `Spec_AE` → … under one theorem.
+
+The **strict** spec repo is a **parallel admission variant** (pedagogical /
+adversarial TLC), not the glue between proofs and merkle. For the intended
+stack, read **proofs** (default admission) then **merkle** (agreement).
+
 ## Public slice map
 
 | Slice | Question it answers | Public repo | Verification |
@@ -47,7 +86,8 @@ Public GitHub today = separate checked SLICES along that stack
 claims matrix hold **inside that slice’s model and assumptions**.
 
 **Cannot conclude:** the full running system is verified end-to-end; that
-unpublished layers are proved here; or that the strict spec repo equals the
+unpublished layers are proved here; that properties of slice A automatically
+transfer to slice B without a composed proof; or that the strict spec repo equals the
 default production admission rule (see [proofs vs spec](https://github.com/vasilisnasopoulos-stack/vortex-dse-cslot-proofs#declared-limits)).
 
 ## Suggested reading order
