@@ -26,6 +26,15 @@ specs, and **not** the full production engine or one composed end-to-end proof.
 **[→ SLICES.md](SLICES.md)** — how the parts connect, what is missing, what you
 can and cannot conclude.
 
+## Organization index (agents start here)
+
+| Doc | Purpose |
+|-----|---------|
+| [READ_THIS_FIRST.md](READ_THIS_FIRST.md) | One-page orientation |
+| [AGENTS.md](AGENTS.md) | Rules for Cursor / cloud agents |
+| [ORGANIZATION.md](ORGANIZATION.md) | Full repo map + folder layout |
+| [repos/](repos/README.md) | Per-repo entry points |
+
 ## Scope
 
 - Machine-checked and model-checked **slices** only — not a full public engine.
