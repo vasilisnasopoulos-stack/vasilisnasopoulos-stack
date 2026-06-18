@@ -17,14 +17,23 @@ reviewable evidence layer:
 > **Start here:** default model + proofs → **proofs** repo.
 > Strict single-slot admission → **spec** repo. They are different variants on purpose.
 
-## Read this first: formal slices, not a full engine
+## Read this first: parts of one machine, not the whole engine
 
-These repos publish **independent formal slices** of the Vortex DSE stack — one
-layer per repository, each with its own assumptions. They are **not** a composed
-end-to-end proof and **not** the production C code.
+These repos are **verified components of the same Vortex DSE stack** — admission,
+agreement, and variants — each checked on its own. They are **not** unrelated
+specs, and **not** the full production engine or one composed end-to-end proof.
 
-**[→ SLICES.md](SLICES.md)** — what is public, what is private, what you can and
-cannot conclude from the bundle.
+**[→ SLICES.md](SLICES.md)** — how the parts connect, what is missing, what you
+can and cannot conclude.
+
+## Organization index (agents start here)
+
+| Doc | Purpose |
+|-----|---------|
+| [READ_THIS_FIRST.md](READ_THIS_FIRST.md) | One-page orientation |
+| [AGENTS.md](AGENTS.md) | Rules for Cursor / cloud agents |
+| [ORGANIZATION.md](ORGANIZATION.md) | Full repo map + folder layout |
+| [repos/](repos/README.md) | Per-repo entry points |
 
 ## Scope
 
